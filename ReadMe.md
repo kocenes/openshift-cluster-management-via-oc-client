@@ -80,6 +80,7 @@ YourPassword #It can't be seen when you type it.
 The code above will let you login cluster's simultaneously. And if you want to login onto another cluster in that shell, you won't have to type it again because you already add them in your shell. Just type **oc login cluster_3** and it will let you login without asking credentials.
 
 At last, you can switch between clusters just writing that cluster's name(it was added as an alias when you typed propercontext and when its successfull), or with kubectx too.
-
+```bash
 kubectx cluster1
 cluster1 # after executing propercontext, it will add 'alias cluster1="oc config --use-context cluster1"'. That is how you can switch to that context easily.
+```
