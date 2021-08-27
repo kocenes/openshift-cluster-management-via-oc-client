@@ -5,18 +5,12 @@ If you want to manage too many openshift cluster(can be appliable to kubernetes 
 In this repository, you will have functions and definitions on your .bash_profile. This functions will let you have your clusters context in your kubeconfig with the name of your actual cluster.
 
 ```bash
-# Openshift 4 Clusters
-cluster1="https://api.cluster1.my.ocp.cluster:6443"
-cluster_2="https://api.cluster-2.my.ocp.cluster:6443"
-# And also some openshift 3 cluster
-cluster_3="https://cluster-3.my.ocp.cluster:8443"
-cluster4="https://cluster4.my.ocp.cluster:8443"
 
 cluster_list=(
-${cluster1}
-${cluster_2}
-${cluster_3}
-${cluster4}
+https://api.cluster1.my.ocp.cluster:6443
+https://api.cluster-2.my.ocp.cluster:6443
+https://cluster-3.my.ocp.cluster:8443
+https://cluster4.my.ocp.cluster:8443
 )
 
 function propercontext () {
