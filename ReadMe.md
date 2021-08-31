@@ -22,7 +22,7 @@ function propercontext () {
 		echo "Logging in ${clusterName} and changing the context if it does not exist"
 		checkContext=$(oc config get-contexts | awk -v context=${clusterName} '{if ($1 == context) {print 1} else if ($2 == context) {print 1}}')
 		[[ ${checkContext} == "1" ]] && echo "Context ${clusterName} already exits, continuing" && continue
-		oc login --insecure-skip-tls-verify ${cluster} --username=${oc_user} --password=${oc_pass}
+		oc login --insecure-skip-tls-verify=true ${cluster} --username=${oc_user} --password=${oc_pass}
 		[[ $? == "0" ]] && oc config rename-context "$(oc config current-context)" ${clusterName}
 		[[ $? == "0" ]] && echo "alias ${clusterName}=\"oc config use-context ${clusterName}\"" >> .bash_profile
 	done
@@ -49,7 +49,7 @@ function oclogin () {
 		cluster=$([[ -n ${1} ]] && (echo ${cluster_list[@]} | tr ' ' '\n' | grep "${cluster}") || echo ${cluster})
 		clusterName=$(sed "s|https://\(api\.\)\?\(.*\)|\2|" <<< ${cluster} | awk -F "." '{print $1}' | tr '-' '_')
 		echo "Logging in ${clusterName}"
-		oc login --insecure-skip-tls-verify ${cluster} --username=${oc_user} --password=${oc_pass} 2>&1 | grep -E "Login successful.|Error"
+		oc login --insecure-skip-tls-verify=true ${cluster} --username=${oc_user} --password=${oc_pass} 2>&1 | grep -E "Login successful.|Error"
 	done
 }
 ```
