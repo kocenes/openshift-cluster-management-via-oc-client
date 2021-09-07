@@ -1,4 +1,4 @@
-# Welcome to StackEdit!
+# Openshift Cluster Management
 
 If you want to manage too many openshift cluster(can be appliable to kubernetes too) all of them in single shell, here is what you should.
 
