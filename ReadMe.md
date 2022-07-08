@@ -36,9 +36,25 @@ function ocuser () {
 	echo 'enter user'
 	IFS= read -r  oc_user < /dev/tty
 }
+
 function ocpass () {
-	echo 'enter pass'
-	IFS= read -rs oc_pass < /dev/tty
+        unset oc_pass
+        while [ -z "${oc_pass}" ]; do
+          echo 'enter pass:'
+          IFS= read -rs oc_pass1 < /dev/tty
+          echo 'enter pass again:'
+          IFS= read -rs oc_pass2 < /dev/tty
+          if [ ${oc_pass1} == ${oc_pass2} ];
+          then
+            oc_pass=$oc_pass1
+            echo "Both passwords are the same.The password was stored now."
+          else
+            echo "WARNING:You have entered different passwords. Try again to store the password.."
+            continue
+          fi
+          break
+        done
+        unset oc_pass1 oc_pass2
 }
 
 function oclogin () {
